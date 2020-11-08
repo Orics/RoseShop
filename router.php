@@ -47,8 +47,8 @@
 
     print_r($_params);
 
-    if(file_exists("./controllers/".$_controller."/".$_action.".php")){
-        require_once("./controllers/".$_controller."/".$_action.".php");
+    if(file_exists("./Controllers/".$_controller."/".$_action.".php")){
+        require_once("./Controllers/".$_controller."/".$_action.".php");
     }
     else{
         echo "404 not found";
