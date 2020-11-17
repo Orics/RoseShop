@@ -1,14 +1,18 @@
 <?php
+    $_area = "customer";
     $_controller = "home";
     $_action = "index";
     $_params = [];
     if( isset($_SERVER['REQUEST_URI']) ){
         $url = explode("/", $_SERVER['REQUEST_URI']);
         if(isset($url[2])){
-            $_controller = $url[2];
+            $_area = $url[2];
         }
         if(isset($url[3])){
-            $actionandparams = $url[3];
+            $_controller = $url[3];
+        }
+        if(isset($url[4])){
+            $actionandparams = $url[4];
             if(isset($actionandparams) == true && strpos($actionandparams,'?') == false){
                 $_action = $actionandparams;
             }
@@ -45,8 +49,8 @@
         }
     } 
 
-    if(file_exists("./Controllers/".$_controller."/".$_action.".php")){
-        require_once("./Controllers/".$_controller."/".$_action.".php");
+    if(file_exists($_area."/Controllers/".$_controller."/".$_action.".php")){
+        require_once($_area."/Controllers/".$_controller."/".$_action.".php");
     }
     else{
         echo "404 not found";
